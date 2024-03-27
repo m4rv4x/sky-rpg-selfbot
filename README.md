@@ -1,4 +1,4 @@
-# Self Bot to automate Sky RPG Game
+# BETA Self Bot to play Sky RPG Game
 
 ## quick install
 ```bash
@@ -14,3 +14,12 @@ cat config.yaml
 ```bash
 node .
 ```
+
+## Credits : 
+
+### https://skybot.fr/
+
+### https://discord.com/invite/m4PRv35ZCG
+
+
+![pwned](image.png)
