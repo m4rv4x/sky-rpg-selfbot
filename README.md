@@ -2,7 +2,7 @@
 
 ## quick install
 ```bash
-git clone https://github.com/m4rv4x/skyrpgbot/
+git clone https://github.com/m4rv4x/sky-rpg-selfbot/
 cd skyrpgbot
 npm install
 ```
