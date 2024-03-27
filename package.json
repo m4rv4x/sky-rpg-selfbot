@@ -1,0 +1,14 @@
+{
+  "name": "skyrpgbot",
+  "version": "1.0.0",
+  "description": "selfbot to spam Sky RPG Game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "m4rv4x",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js-selfbot-v13": "^3.1.4"
+  }
+}
