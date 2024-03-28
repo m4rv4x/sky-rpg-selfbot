@@ -7,7 +7,7 @@ const path = require('path');
 const BOT_ID = "450323683840491530";
 const CHANNEL_ID = "1000402540908789820";
 
-const config = yaml.load(fs.readFileSync(path.join(__dirname, 'config.yaml'), 'utf8'));
+const config = yaml.load('config.yaml');
 const client = new Discord.Client({
     checkUpdate: false,
     ws: { properties: { $browser: "Discord iOS" }}
@@ -15,7 +15,7 @@ const client = new Discord.Client({
 
 const cooldowns = {
     "mine": 191,
-    "wood": 160,
+    "wood": 120,
     "gather": 130,
     "fish": 130,
     "hunt": 180,
@@ -31,6 +31,15 @@ function extractRealNumbers(message) {
         return { minutes, seconds };
     }
     return null;
+}
+
+function first_run() {
+    sendSlashCommand("rpg debut parrainage:2395");
+    sendSlashCommand("rpg acheter id: 1");
+    sendSlashCommand("rpg acheter id: 11");
+    sendSlashCommand("rpg acheter id: 21");
+    sendSlashCommand("rpg acheter id: 31");
+    sendSlashCommand("rpg acheter id: 41");
 }
 
 async function executeAction(matchedAction, message) {
@@ -58,6 +67,8 @@ client.once('ready', () => {
 
 client.on('messageCreate', async message => {
     if (message.author.id === BOT_ID && message.author.bot) {
+        console.log(message.content)
+        console.log(message.embeds)
         const actionOrder = getActions().find(action => message.content.includes(action.keyword));
         if (actionOrder) {
             executeAction(actionOrder, message);
@@ -79,7 +90,7 @@ client.on('messageCreate', async message => {
 
 async function sendSlashCommand(action) {
     try {
-        await client.channels.cache.get(CHANNEL_ID).sendSlash(BOT_ID, action);
+        await client.channels.cache.get(config.channelID).sendSlash(BOT_ID, action);
     } catch (error) {
         console.log(error);
     }
@@ -140,7 +151,8 @@ function getFarmActions() {
         "gather": { action: "rpg-farm cueillir", description: "Gathering 🧤", cooldown: cooldowns["gather"] },
         "fish": { action: "rpg-farm pecher", description: "Fishing 🎣", cooldown: cooldowns["fish"] },
         "hunt": { action: "rpg-farm chasser", description: "Hunting 🏹", cooldown: cooldowns["hunt"] },
-        "daily": { action: "rpg-coffre daily", description: "DAILY 🏹", cooldown: cooldowns["daily"] }
+        "farm": { action: "rpg-farm fermier action:Champ", description: "Farming 🌾", cooldown: cooldowns["farm"] },
+        "daily": { action: "rpg-coffre daily", description: "DAILY 📦", cooldown: cooldowns["daily"] }
     };
 }
 
